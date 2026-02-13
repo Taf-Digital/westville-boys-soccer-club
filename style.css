@@ -225,11 +225,98 @@ body {
 
 textarea { height: 100%; min-height: 150px; }
 
-/* Mobile View */
-@media (max-width: 900px) {
-    .navbar { height: auto; padding: 20px; flex-direction: column; gap: 15px; }
-    .nav-links li { margin: 0 10px; }
-    .community-grid { grid-template-columns: 1fr; }
-    .form-row { flex-direction: column; }
-    .hero-text h1 { font-size: 2.2rem; }
+.location-section {
+    padding: 60px 10%;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.map-container {
+    position: relative;
+    margin-top: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.directions-overlay {
+    padding: 20px;
+    background-color: #1a1a1a;
+}
+
+.location-section h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+
+/* --- MOBILE RESPONSIVENESS FIXES --- */
+@media (max-width: 768px) {
+    
+    /* 1. Fix the Nav Bar: Wrap links so they don't slide off screen */
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 10px;
+        text-align: center;
+    }
+
+    .logo a {
+        flex-direction: column; /* Stack logo image over the text */
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+
+    .logo-text {
+        font-size: 0.9rem;
+        white-space: normal; /* Allow text to wrap if it's too long */
+    }
+
+    .nav-links {
+        flex-wrap: wrap; /* This is the "magic" that fixes overlapping links */
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .nav-links li {
+        margin: 0 5px; /* Tighten spacing between links */
+    }
+
+    /* 2. Fix the Hero Section */
+    .hero-text h1 {
+        font-size: 1.8rem; /* Make the big heading smaller for phones */
+        line-height: 1.2;
+    }
+
+    .stripe {
+        width: 15px; /* Shrink side stripes so the image has more room */
+    }
+
+    /* 3. Fix the Community Grid: Stack cards vertically */
+    .community-grid {
+        grid-template-columns: 1fr; /* Force 1 card per row */
+        gap: 20px;
+        padding: 0 5%;
+    }
+
+    /* 4. Fix the Map and Contact Form */
+    .form-row {
+        flex-direction: column; /* Stack name inputs over the message box */
+    }
+
+    .location-section iframe {
+        height: 300px; /* Make the map shorter for easier scrolling on phones */
+    }
+}
+
+/* Extra small fix for very tiny phones */
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.7rem; /* Tiny text for tiny screens */
+    }
 }
