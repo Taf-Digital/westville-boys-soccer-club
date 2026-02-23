@@ -681,3 +681,77 @@ main, section, .teams-wrapper, .detail-container {
     font-size: 0.75rem;
     opacity: 0.4;
 }
+
+/* Contact Page Styling */
+.contact-container {
+    padding: 80px 20px;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/Under10.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-box {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.contact-form {
+    flex: 1.5;
+    padding: 40px;
+}
+
+.contact-info {
+    flex: 1;
+    background: #0022ff; /* Westville Blue */
+    color: white;
+    padding: 40px;
+}
+
+.contact-form h2 {
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.input-group input, .input-group select, .input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-submit {
+    background: #ee0000; /* Westville Red */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-weight: 800;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background: #cc0000;
+    transform: translateY(-2px);
+}
