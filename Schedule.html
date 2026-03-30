@@ -50,6 +50,31 @@
             width: 280px;
         }
 
+        .export-btn {
+        background: linear-gradient(135deg, #2563eb, #1e3a8a); /* blue gradient */
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+
+        transition: all 0.25s ease;
+        }
+
+        .export-btn:hover {
+        background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.6);
+        }
+
+        .export-btn:active {
+         transform: scale(0.97);
+        }
+
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
@@ -80,146 +105,132 @@
             background: #e6fff9;
             font-weight: 700;
         }
-
-        @media (max-width: 768px) {
-            .schedule-table th, .schedule-table td {
-                padding: 10px 6px;
-                font-size: 0.8rem;
-            }
-        }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <div class="logo">
-            <a href="index.html">
-                <img src="images/LOGO.jpg" alt="Logo" class="logo-image">
-                <span class="logo-text">Westville Old Boys Football Club</span>
-            </a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="Training.html">TRAINING</a></li> 
-            <li><a href="Schedule.html">SCHEDULE</a></li>
-            <li><a href="Teams.html">TEAMS</a></li>
-            <li><a href="coaches.html">COACHES</a></li>
-            <li><a href="Gallery.html">GALLERY</a></li>
-            <li><a href="Contact.html">CONTACT US</a></li>
-            <li><a href="About.html">ABOUT US</a></li>  
-        </ul>
-    </nav>
+<nav class="navbar">
+    <div class="logo">
+        <a href="index.html">
+            <img src="images/LOGO.jpg" alt="Logo" class="logo-image">
+            <span class="logo-text">Westville Old Boys Football Club</span>
+        </a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="Training.html">TRAINING</a></li> 
+        <li><a href="Schedule.html">SCHEDULE</a></li>
+        <li><a href="Teams.html">TEAMS</a></li>
+        <li><a href="coaches.html">COACHES</a></li>
+        <li><a href="Gallery.html">GALLERY</a></li>
+        <li><a href="Contact.html">CONTACT US</a></li>
+        <li><a href="About.html">ABOUT US</a></li>  
+    </ul>
+</nav>
 
-    <section class="schedule-section">
+<section class="schedule-section">
 
-        <h2>U6.1 Fixtures</h2>
-        <p class="subtitle">2026 GDLFA Junior League Schedule</p>
+    <h2>U6.1 Fixtures</h2>
+    <p class="subtitle">2026 GDLFA Junior League Schedule</p>
 
-        <div class="team-filter">
-            <input type="text" id="searchBar" placeholder="Search by team, venue, or date...">
-            <select id="teamFilter">
-                <option value="all">All Matches</option>
-                <option value="wob">WOB Matches Only</option>
-            </select>
-        </div>
-
-        <table class="schedule-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Home Team</th>
-                    <th></th>
-                    <th>Away Team</th>
-                    <th>Venue</th>
-                    <th>Time</th>
-                    <th>Field</th>
-                </tr>
-            </thead>
-            <tbody id="scheduleBody">
-                </tbody>
-        </table>
-
-    </section>
-
-    <footer class="main-footer">
-        <div class="footer-content">
-            <p class="footer-club-name">WESTVILLE OLD BOYS FOOTBALL CLUB</p>
-            
-            <div class="social-container">
-                <a href="https://www.facebook.com/profile.php?id=100092249469856" target="_blank" class="social-link">
-                    <img src="images/Facebook.jpg" alt="Facebook" class="social-logo">
-                </a>
-
-                <a href="https://www.instagram.com/westvilleoldboysfc/" target="_blank" class="social-link">
-                    <img src="images/Instagram.jpg" alt="Instagram" class="social-logo">
-                </a>
-
-                <a href="https://www.tiktok.com/@wobfc" target="_blank" class="social-link">
-                    <img src="images/Tiktok.jpeg" alt="TikTok" class="social-logo">
-                </a>
-            </div>
-
-            <p class="footer-tagline">Where Passion Meets Excellence</p>
-            <p class="copyright">&copy; 2026 WOBFC | Jimmy Bellows Sports Field</p>
-        </div>
-    </footer>
-
-    <script>
-        // Standard structural placeholder array for fallback if Fetch gets blocked locally
+    <div class="team-filter">
+        <input type="text" id="searchBar" placeholder="Search by team, venue, or date...">
         
+        <select id="teamFilter">
+            <option value="all">All Matches</option>
+            <option value="wob">WOB Matches Only</option>
+        </select>
 
-        fetch("fixtures.json")
-        .then(response => response.json())
-        .then(data => {
-            fixturesData = data;
-            renderTable();
-        }).catch(err => {
-            console.warn("Falling back to internal dummy data setup. Ensure your fixtures.json is running live via standard server protocols.");
-            renderTable(); // Fallback load
-        });
+        <!--EXPORT BUTTON -->
+        <button class="export-btn" onclick="exportCSV()">Export to CSV</button>
+    </div>
 
-        function renderTable() {
-            const tbody = document.getElementById("scheduleBody");
-            const filter = document.getElementById("teamFilter").value;
-            const search = document.getElementById("searchBar").value.toLowerCase();
+    <table class="schedule-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Home Team</th>
+                <th></th>
+                <th>Away Team</th>
+                <th>Venue</th>
+                <th>Time</th>
+                <th>Field</th>
+            </tr>
+        </thead>
+        <tbody id="scheduleBody"></tbody>
+    </table>
 
-            tbody.innerHTML = "";
+</section>
 
-            fixturesData.forEach(match => {
+<footer class="main-footer">
+    <div class="footer-content">
+        <p class="footer-club-name">WESTVILLE OLD BOYS FOOTBALL CLUB</p>
+    </div>
+</footer>
 
-                const isWOB = match.home.includes("WOB") || match.away.includes("WOB");
+<script>
+let fixturesData = [];
 
-                // Apply WOB filter
-                if (filter === "wob" && !isWOB) return;
+fetch("fixtures.json")
+.then(res => res.json())
+.then(data => {
+    fixturesData = data;
+    renderTable();
+});
 
-                // Apply search filter
-                const matchText = `${match.date} ${match.home} ${match.away} ${match.venue}`.toLowerCase();
-                if (search && !matchText.includes(search)) return;
+function renderTable() {
+    const tbody = document.getElementById("scheduleBody");
+    const filter = document.getElementById("teamFilter").value;
+    const search = document.getElementById("searchBar").value.toLowerCase();
 
-                const row = document.createElement("tr");
+    tbody.innerHTML = "";
 
-                if (isWOB) {
-                    row.classList.add("wob-match");
-                }
+    fixturesData.forEach(match => {
+        const isWOB = match.home.includes("WOB") || match.away.includes("WOB");
 
-                row.innerHTML = `
-                    <td>${match.date}</td>
-                    <td>${match.home}</td>
-                    <td>VS</td>
-                    <td>${match.away}</td>
-                    <td>${match.venue}</td>
-                    <td>${match.time}</td>
-                    <td>${match.field}</td>
-                `;
+        if (filter === "wob" && !isWOB) return;
 
-                tbody.appendChild(row);
-            });
-        }
+        const matchText = `${match.date} ${match.home} ${match.away} ${match.venue}`.toLowerCase();
+        if (search && !matchText.includes(search)) return;
 
-        document.getElementById("teamFilter").addEventListener("change", renderTable);
-        document.getElementById("searchBar").addEventListener("input", renderTable);
-    </script>
+        const row = document.createElement("tr");
+
+        if (isWOB) row.classList.add("wob-match");
+
+        row.innerHTML = `
+            <td>${match.date}</td>
+            <td>${match.home}</td>
+            <td>VS</td>
+            <td>${match.away}</td>
+            <td>${match.venue}</td>
+            <td>${match.time}</td>
+            <td>${match.field}</td>
+        `;
+
+        tbody.appendChild(row);
+    });
+}
+
+/*CSV EXPORT FUNCTION */
+function exportCSV() {
+    let csv = "Date;Home Team;Away Team;Venue;Time;Field\n";
+
+    fixturesData.forEach(match => {
+        csv += `${match.date};${match.home};${match.away};${match.venue};${match.time};${match.field}\n`;
+    });
+
+    const blob = new Blob([csv], { type: "text/csv" });
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(blob);
+    link.download = "fixtures.csv";
+    link.click();
+}
+
+document.getElementById("teamFilter").addEventListener("change", renderTable);
+document.getElementById("searchBar").addEventListener("input", renderTable);
+</script>
 
 </body>
 </html>
