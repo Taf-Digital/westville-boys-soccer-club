@@ -833,3 +833,44 @@ main, section, .teams-wrapper, .detail-container {
         .map-btn:hover {
             background: #020617;
         }
+
+        /* Container for the signature */
+.main-footer {
+    position: relative; /* Essential for the absolute positioning below */
+    padding-bottom: 40px; /* Space to prevent logo overlap on mobile */
+}
+
+.taf-signature {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align "Powered by" text to the right */
+}
+
+.taf-signature span {
+    font-size: 10px;
+    font-weight: 700;
+    color: #ffffff;
+    opacity: 0.6;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.taf-signature img {
+    /* ID photo proportions - typically 35mm x 45mm */
+    width: 70px; 
+    height: auto;
+    display: block;
+    border-radius: 2px; /* Slight rounding for a clean look */
+}
+
+/* Adjust for smaller screens so it doesn't crowd content */
+@media (max-width: 600px) {
+    .taf-signature {
+        position: static;
+        margin-top: 20px;
+        align-items: center;
+    }
+}
